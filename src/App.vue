@@ -14,18 +14,17 @@
 
 <script>
 import Vue from 'vue'
+import Page from './views/Page'
 
 export default {
 	async created() {
-		await this.sleep(3000)
+		await this.sleep(5000)
 		const routes = this.pages.map(page => {
 			return {
 				name: page['.key'],
 				path: page.path,
-				component: new Vue({
-					name: page['.key'],
-					template: `<h1>${page.header}</h1>`
-				})
+				props: { header: page.header },
+				component: Page
 			}
 		})
 		console.log(routes)
