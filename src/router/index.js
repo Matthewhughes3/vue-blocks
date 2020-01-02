@@ -2,7 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import Login from '../views/Login'
+import Pages from '../views/Pages'
+import Menus from '../views/Menus'
 import Dashboard from '../views/Dashboard'
+import EditPage from '../views/EditPage'
 import { db, auth } from '../firebase'
 
 Vue.use(VueRouter)
@@ -19,6 +22,25 @@ let routes = [
 		path: '/vb-dashboard',
 		meta: {requiresAuth: true},
 		component: Dashboard
+	},
+	{
+		name: 'pages',
+		path: '/vb-dashboard/pages',
+		meta: {requiresAuth: true},
+		component: Pages
+	},
+	{
+		name: 'menus',
+		path: '/vb-dashboard/menus',
+		meta: {requiresAuth: true},
+		component: Menus
+	},
+	{
+		name: 'edit-page',
+		path: '/vb-dashboard/pages/edit-page',
+		meta: {requiresAuth: true},
+		props: true,
+		component: EditPage
 	}
 ]
 

@@ -25,6 +25,9 @@ const store = new Vuex.Store({
       route_paths.push('/');
       return route_paths;
     },
+		unique_pages: state => {
+			return state.pages.filter(page => page.path != '/')
+		}
   },
 });
 
