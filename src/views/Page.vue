@@ -1,13 +1,18 @@
 <template>
   <div v-if="page.data.length > 0">
-    <div v-if="$route.query.edit">
-      <div v-for="element in page.data" :key="element.value">
+    <div v-if="$route.query.edit && user">
+      <div v-for="(element, idx) in page.data" :key="element.value">
         <v-text-field
           v-model="element.value"
           v-if="element.edit"
           @focusout="$set(element, 'edit', false)"
         />
 				<v-container v-else @mouseover="$set(element, 'delete', true)" @mouseleave="$set(element, 'delete', false)">
+					<v-row v-if="idx > 0">
+						<v-col>
+							<v-icon class="pointer" @click="move_up(idx)">mdi-arrow-up-bold</v-icon>
+						</v-col>
+					</v-row>
 					<v-row>
 						<v-col>
 							<tag
@@ -18,6 +23,11 @@
 						</v-col>
 						<v-col>
 							<span v-if="element.delete" class="close" @click="remove_element(element)">X</span>
+						</v-col>
+					</v-row>
+					<v-row v-if="idx < page.data.length - 1">
+						<v-col>
+							<v-icon class="pointer" @click="move_down(idx)">mdi-arrow-down-bold</v-icon>
 						</v-col>
 					</v-row>
 				</v-container>
@@ -49,7 +59,7 @@ Vue.component('tag', {
 
 export default {
   computed: {
-    ...mapState(['pages']),
+    ...mapState(['pages', 'user']),
     ...mapGetters(['routes']),
     page() {
       if (this.pages) {
@@ -60,6 +70,16 @@ export default {
     },
   },
 	methods: {
+		move_up(idx) {
+			const element_copy = this.page.data[idx]
+			this.page.data[idx] = this.page.data[idx-1]
+			this.page.data[idx-1] = element_copy
+		},
+		move_down(idx) {
+			const element_copy = this.page.data[idx]
+			this.page.data[idx] = this.page.data[idx+1]
+			this.page.data[idx+1] = element_copy
+		},
 		remove_element(element) {
       let path = this.$route.path;
 

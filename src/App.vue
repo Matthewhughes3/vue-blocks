@@ -171,4 +171,7 @@ export default {
 	cursor: pointer;
 	color: red;
 }
+.pointer:hover {
+	cursor: pointer;
+}
 </style>
