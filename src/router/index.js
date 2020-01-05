@@ -6,6 +6,7 @@ import Pages from '../views/Pages'
 import Menus from '../views/Menus'
 import Dashboard from '../views/Dashboard'
 import EditPage from '../views/EditPage'
+import EditMenu from '../views/EditMenu'
 import { db, auth } from '../firebase'
 
 Vue.use(VueRouter)
@@ -41,6 +42,13 @@ let routes = [
 		meta: {requiresAuth: true},
 		props: true,
 		component: EditPage
+	},
+	{
+		name: 'edit-menu',
+		path: '/vb-dashboard/pages/edit-menu',
+		meta: {requiresAuth: true},
+		props: true,
+		component: EditMenu
 	}
 ]
 

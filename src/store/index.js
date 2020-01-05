@@ -7,8 +7,10 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     pages: [],
+		menus: [],
     user: null,
-		elements: []
+		elements: [],
+		defaults: {}
   },
   getters: {
     routes: state => {

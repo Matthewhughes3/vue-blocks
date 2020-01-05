@@ -15,11 +15,17 @@ collectionData(db.collection('pages'), 'uid').subscribe(pages => {
   store.state.pages = pages;
 });
 
+collectionData(db.collection('menus'), 'uid').subscribe(menus => {
+  store.state.menus = menus;
+});
+
 docData(db.collection('settings').doc('elements')).subscribe(elements => {
-	store.state.elements = elements.elements;
-})
+  store.state.elements = elements.elements;
+});
 
 docData(db.collection('settings').doc('defaults')).subscribe(async defaults => {
+  store.defaults = defaults;
+
   const index_page = await db
     .collection('pages')
     .doc(defaults.index_page)
