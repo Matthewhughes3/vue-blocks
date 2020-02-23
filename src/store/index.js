@@ -1,16 +1,16 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import Page from '../views/Page';
+import Vue from "vue";
+import Vuex from "vuex";
+import Page from "../views/Page";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
     pages: [],
-		menus: [],
+    menus: [],
     user: null,
-		elements: [],
-		defaults: {}
+    elements: [],
+    defaults: {}
   },
   getters: {
     routes: state => {
@@ -18,19 +18,19 @@ const store = new Vuex.Store({
         return {
           name: page.uid,
           path: page.path,
-          component: Page,
+          component: Page
         };
       });
     },
     route_paths: state => {
       const route_paths = state.pages.map(page => page.path);
-      route_paths.push('/');
+      route_paths.push("/");
       return route_paths;
     },
-		unique_pages: state => {
-			return state.pages.filter(page => page.path != '/')
-		}
-  },
+    unique_pages: state => {
+      return state.pages.filter(page => page.path != "/");
+    }
+  }
 });
 
 export default store;

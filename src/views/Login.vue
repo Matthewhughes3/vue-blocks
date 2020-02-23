@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import {auth} from '../firebase';
+import { auth } from "../firebase";
 
 export default {
   data() {
     return {
       username: null,
       password: null,
-      msg: null,
+      msg: null
     };
   },
   methods: {
@@ -37,15 +37,15 @@ export default {
       auth
         .signInWithEmailAndPassword(this.username, this.password)
         .then(user => {
-          this.$router.push('/');
+          this.$router.push("/");
         })
         .catch(err => {
-          this.msg = 'Incorrect Username or Password';
+          this.msg = "Incorrect Username or Password";
           this.username = null;
           this.password = null;
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

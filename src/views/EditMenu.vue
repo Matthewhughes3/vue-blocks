@@ -41,18 +41,18 @@
         ><br
       /></span>
     </div>
-    <v-btn @click="menu.pages.push({edit: true, new: true})">+</v-btn>
+    <v-btn @click="menu.pages.push({ edit: true, new: true })">+</v-btn>
     <br />
     <v-btn @click="submit">Save Changes</v-btn>
   </div>
 </template>
 
 <script>
-import {db} from '../firebase';
+import { db } from "../firebase";
 
 export default {
   props: {
-    old_menu: Object,
+    old_menu: Object
   },
   computed: {
     menu() {
@@ -62,15 +62,15 @@ export default {
         return {
           pages: [
             {
-              name: '',
-              path: '',
-              edit: true,
-            },
+              name: "",
+              path: "",
+              edit: true
+            }
           ],
-          uid: 'New Menu',
+          uid: "New Menu"
         };
       }
-    },
+    }
   },
   methods: {
     remove_page(page) {
@@ -78,7 +78,7 @@ export default {
         const index = this.menu.pages.indexOf(page);
         this.menu.pages.splice(index, 1);
       } else {
-        this.$set(page, 'edit', false);
+        this.$set(page, "edit", false);
       }
     },
     async submit() {
@@ -92,12 +92,12 @@ export default {
       }
 
       await db
-        .collection('menus')
+        .collection("menus")
         .doc(uid)
         .set(this.menu);
-      alert('Success!');
-    },
-  },
+      alert("Success!");
+    }
+  }
 };
 </script>
 
